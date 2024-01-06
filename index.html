@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="tag">calculator</h1>
+    <div class="container">
+          <div class="part1">
+            <div class="output box" id="output" style="width: 400px; height: 50px; background-color: lightpink;">0</div>
+          </div>
+          <br>
+        <div class="part1">
+            <div class="red box" id="add" onclick="handleClick('+')">+</div>
+            <div class="green box" id="sub" onclick="handleClick('-')">-</div>
+            <div class="blue box" id="multiply" onclick="handleClick('*')">*</div>
+            <div class="yellow box" id="divide" onclick="handleClick('/')">/</div>
+        </div>
+        <br>
+        <div class="part1">
+            <div class="red box" id="one" onclick="handleClick(1)">1</div>
+            <div class="green box" onclick="handleClick(2)">2</div>
+            <div class="blue box" onclick="handleClick(3)">3</div>
+        </div>
+        <br>
+        <div class="part1">
+            <div class="red box" onclick="handleClick(4)">4</div>
+            <div class="green box" onclick="handleClick(5)">5</div>
+            <div class="blue box" onclick="handleClick(6)">6</div>
+        </div>
+        <br>
+        <div class="part1">
+            <div class="red box" onclick="handleClick(7)">7</div>
+            <div class="green box" onclick="handleClick(8)">8</div>
+            <div class="blue box" onclick="handleClick(9)">9</div>
+        </div>
+        <br>
+
+        <div class="part1">
+            <div class="red box" onclick="erase()">X</div>
+            <div class="green box" onclick="AC()">AC</div>
+            <div class="blue box" onclick="handleClick('%')">%</div>
+            <div class="red box" onclick="handleClick(0)">0</div>
+
+        </div>
+        <br>
+    </div>
+    <script>
+        function handleClick(val){
+            const clickValue = document.getElementById('output').innerHTML;
+            for(let i=0;i<clickValue.length;i++){
+                if(i==clickValue.length-1){
+                    if(clickValue.charAt(i)!=="+" && clickValue.charAt(i)!=="-" && clickValue.charAt(i)!=="*" && clickValue.charAt(i)!=='/' && clickValue.charAt(i)!=='%'){
+                        if(clickValue.charAt(i)=='0' && i==0){
+                            document.getElementById('output').innerHTML=val;
+                            break;
+
+                        }
+                        const result=clickValue+val;
+                         document.getElementById('output').innerHTML=result;
+                          break;
+                    }
+              
+                }
+                if(clickValue.charAt(i)=='+'){
+                const result=parseInt(clickValue)+val;
+            document.getElementById('output').innerHTML=result;
+            break;
+                }
+                else if(clickValue.charAt(i)=='-'){
+                    const result=parseInt(clickValue)-val;
+            document.getElementById('output').innerHTML=result;
+            break;
+                }
+                else if(clickValue.charAt(i)=='*'){
+                    const result=parseInt(clickValue)*val;
+            document.getElementById('output').innerHTML=result;
+            break;
+
+                }
+                else if(clickValue.charAt(i)=='/'){
+                    const result=parseInt(clickValue)/val;
+            document.getElementById('output').innerHTML=result;
+            break;
+                }
+                else if(clickValue.charAt(i)=='%'){
+                    const result=parseInt(clickValue)%val;
+                    document.getElementById('output').innerHTML=result;
+                }
+            }
+            
+        }
+        function AC(){
+            document.getElementById('output').innerHTML=0;
+        }
+
+        function erase(){
+            const outputValue= document.getElementById('output').innerHTML;
+            let result="";
+            for(let i=0;i<outputValue.length-1;i++){
+                result=result+outputValue.charAt(i);
+            }
+            //result=result+"A";
+            document.getElementById('output').innerHTML=result;
+        }
+        
+    </script>
+
+</body>
+</html>
